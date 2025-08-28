@@ -13,7 +13,7 @@ class TutorialApp(App):
         self.scatter = Scatter(size_hint=(None, None), size=(300, 300))
 
         # Load image  
-        self.img = Image(source="crashcourse/random_image.jpg", size=self.scatter.size, pos=self.scatter.pos)
+        self.img = Image(source="crashcourse/lesson2/random_image.jpg", size=self.scatter.size, pos=self.scatter.pos)
         self.scatter.add_widget(self.img)
         root.add_widget(self.scatter)
 

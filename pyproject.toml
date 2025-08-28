@@ -11,4 +11,6 @@ dependencies = [
     "kivy-ios>=2025.5.17",
     "kivy-reloader>=0.7.2",
     "kivymd @ git+https://github.com/kivymd/KivyMD.git@master",
+    "plyer>=2.1.0",
+    "pyjnius>=1.6.1",
 ]

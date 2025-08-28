@@ -1,5 +1,5 @@
 # ./main.py  (new file)
-from crashcourse.main import TutorialApp  # <-- change to your app class name
+from crashcourse.lesson_10.main import main
 
 if __name__ == "__main__":
-    TutorialApp().run()
+    main()
