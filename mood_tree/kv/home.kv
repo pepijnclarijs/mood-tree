@@ -1,0 +1,53 @@
+#:kivy 2.3.0
+
+ScreenManager:
+    IntroScreen:
+    HomeScreen:
+
+<IntroScreen>:
+    name: 'intro'
+
+    Image:
+        source: "mood_tree/assets/images/logo.png"
+
+    MDLabel:
+        text: "Hello,\nI am here to help you track your mood"
+        halign: 'center'
+        pos_hint: {'center_x':0.5, 'center_y':0.6}
+
+    MDButton:
+        style: "filled"
+        md_bg_color: 'black'
+        pos_hint: {'center_x':0.5, 'center_y':0.3}
+        on_press: root.manager.current = 'home'
+
+        MDButtonText:
+            text: 'Start'
+        
+<HomeScreen>:
+    name: 'home'
+
+    MDIcon:
+        icon: "home"
+        halign: 'center'
+        pos_hint: {'center_x':0.5, 'center_y':0.9}
+
+    MDButton:
+        style: "outlined"           # replacement for MDRectangleFlatButton
+        size_hint: None, None
+        width: dp(140)
+        height: dp(44)
+        pos_hint: {'center_x': 0.5, 'center_y': 0.6}
+        on_release: root.manager.current = 'play'
+        MDButtonText:
+            text: "Play"
+
+    MDButton:
+        style: "outlined"
+        size_hint: None, None
+        width: dp(140)
+        height: dp(44)
+        pos_hint: {'center_x': 0.5, 'center_y': 0.4}
+        on_release: root.manager.current = 'edit'
+        MDButtonText:
+            text: "Save"

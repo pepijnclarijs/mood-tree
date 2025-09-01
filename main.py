@@ -1,5 +1,5 @@
 # ./main.py  (new file)
-from crashcourse.lesson_10.main import main
+from mood_tree.app import MoodTreeApp
 
 if __name__ == "__main__":
-    main()
+    MoodTreeApp().run()
