@@ -1,0 +1,21 @@
+#:kivy 2.3.0
+<IntroScreen>:
+    name: 'intro'
+
+    Image:
+        source: "mood_tree/assets/images/logo.png"
+
+    MDLabel:
+        text: "Hello,\nI am here to help you track your mood"
+        halign: 'center'
+        pos_hint: {'center_x':0.5, 'center_y':0.6}
+
+    MDButton:
+        style: "filled"
+        md_bg_color: 'black'
+        pos_hint: {'center_x':0.5, 'center_y':0.3}
+        on_press: root.manager.current = 'home'
+
+        MDButtonText:
+            text: 'Start'
+            

@@ -5,8 +5,10 @@ from kivy.uix.screenmanager import ScreenManager
 from kivymd.app import MDApp
 
 from mood_tree import config
-from mood_tree.screens.home import HomeScreen
-from mood_tree.screens.intro import IntroScreen
+
+# Import your screen classes BEFORE loading KV
+from mood_tree.screens.home import HomeScreen  # noqa: F401
+from mood_tree.screens.intro import IntroScreen  # noqa: F401
 
 
 class MyScreenManager(ScreenManager):
@@ -15,10 +17,8 @@ class MyScreenManager(ScreenManager):
 class MoodTreeApp(MDApp):
     def build(self):
         # Load the kv files.
-        Builder.load_file(os.path.join(config.KV_PATH, "home.kv"))    
-        
-        sm = MyScreenManager()
-        sm.add_widget(HomeScreen())
-        sm.add_widget(IntroScreen())
-        
-        return sm
+        return Builder.load_file(os.path.join(config.KV_PATH, "main.kv"))    
+
+
+    def on_start(self):
+        self.fps_monitor_start()
