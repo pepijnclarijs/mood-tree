@@ -216,3 +216,4 @@ __pycache__/
 *.log
 
 bin/
+test.md

@@ -1,5 +1,11 @@
-from kivy.uix.boxlayout import BoxLayout
+from kivy.properties import StringProperty
+from kivymd.uix.navigationbar import MDNavigationBar, MDNavigationItem
 
 
-class NavBar(BoxLayout):
+class BaseMDNavigationItem(MDNavigationItem):
+    icon = StringProperty()
+    text = StringProperty()
+    navigate_to = StringProperty()
+
+class NavBar(MDNavigationBar):
     pass

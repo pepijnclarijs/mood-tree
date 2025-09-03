@@ -1,7 +1,20 @@
 #:kivy 2.3.0
 #:include mood_tree/kv/home.kv
 #:include mood_tree/kv/intro.kv
+#:include mood_tree/kv/navbar.kv
 
-MyScreenManager:
-    HomeScreen:
-    IntroScreen:
+MDBoxLayout:
+    orientation: "vertical"
+    md_bg_color: self.theme_cls.backgroundColor
+
+    MyScreenManager:
+        id: screen_manager
+        HomeScreen:
+            name: "home_screen"
+        IntroScreen:
+            name: "intro_screen"
+    
+    NavBar:
+        on_switch_tabs: app.on_switch_tabs(*args)
+
+    
