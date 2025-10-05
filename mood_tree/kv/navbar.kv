@@ -8,6 +8,7 @@
 
 <NavBar>:
     MDNavigationBar:
+        on_switch_tabs: app.on_switch_tabs(*args)
         BaseMDNavigationItem:
             icon: "home"
             text: "Home"
@@ -17,4 +18,4 @@
         BaseMDNavigationItem:
             icon: "intro"
             text: "Intro"
-            navigate_to: "home_screen"
+            navigate_to: "intro_screen"

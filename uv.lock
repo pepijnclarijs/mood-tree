@@ -525,24 +525,28 @@ source = { virtual = "." }
 dependencies = [
     { name = "buildozer" },
     { name = "cython" },
+    { name = "kaki" },
     { name = "kivy" },
     { name = "kivy-ios" },
     { name = "kivy-reloader" },
     { name = "kivymd" },
     { name = "plyer" },
     { name = "pyjnius" },
+    { name = "watchdog" },
 ]
 
 [package.metadata]
 requires-dist = [
     { name = "buildozer", specifier = ">=1.5.0" },
     { name = "cython", specifier = ">=3.1.2" },
+    { name = "kaki", specifier = ">=0.1.9" },
     { name = "kivy", specifier = ">=2.3.1" },
     { name = "kivy-ios", specifier = ">=2025.5.17" },
     { name = "kivy-reloader", specifier = ">=0.7.2" },
     { name = "kivymd", git = "https://github.com/kivymd/KivyMD.git?rev=master" },
     { name = "plyer", specifier = ">=2.1.0" },
     { name = "pyjnius", specifier = ">=1.6.1" },
+    { name = "watchdog", specifier = ">=6.0.0" },
 ]
 
 [[package]]

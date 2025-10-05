@@ -2,6 +2,7 @@
 <HomeScreen>:
     name: 'home'
     md_bg_color: self.theme_cls.backgroundColor
+    # md_bg_color: self.theme_cls.backgroundColor
 
     MDIcon:
         icon: "home"
@@ -27,7 +28,7 @@
         pos_hint: {'center_x': 0.5, 'center_y': 0.4}
         on_release: root.manager.current = 'edit'
         MDButtonText:
-            text: "Save"
+            text: "Save2"
 
     MDLabel:
         text: str(root.ids.MyButton.height)
