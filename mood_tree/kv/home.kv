@@ -2,7 +2,6 @@
 <HomeScreen>:
     name: 'home'
     md_bg_color: self.theme_cls.backgroundColor
-    # md_bg_color: self.theme_cls.backgroundColor
 
     MDIcon:
         icon: "home"
@@ -28,8 +27,30 @@
         pos_hint: {'center_x': 0.5, 'center_y': 0.4}
         on_release: root.manager.current = 'edit'
         MDButtonText:
-            text: "Save2"
+            text: "Save"
 
     MDLabel:
         text: str(root.ids.MyButton.height)
         halign: "center"
+
+#:kivy 2.3.0
+<BaseMDNavigationItem>:
+    MDNavigationItemIcon:
+        icon: root.icon
+
+    MDNavigationItemLabel:
+        text: root.text
+
+<NavBar>:
+    MDNavigationBar:
+        on_switch_tabs: app.on_switch_tabs(*args)
+        BaseMDNavigationItem:
+            icon: "home"
+            text: "Home"
+            active: True
+            navigate_to: "home_screen"
+
+        BaseMDNavigationItem:
+            icon: "intro"
+            text: "Intro"
+            navigate_to: "intro_screen"

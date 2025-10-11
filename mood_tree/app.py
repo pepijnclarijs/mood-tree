@@ -1,7 +1,7 @@
 import os
 
 from kivy.core.window import Window
-from kivy.lang import Builder
+from kivy.lang import Builder  # noqa: F401
 from kivy.modules import inspector
 from kivymd.tools.hotreload.app import MDApp
 from kivymd.uix.navigationbar import MDNavigationBar, MDNavigationItem
@@ -12,28 +12,22 @@ from mood_tree import config
 # Import your screen classes BEFORE loading KV
 from mood_tree.screens.home import HomeScreen  # noqa: F401
 from mood_tree.screens.intro import IntroScreen  # noqa: F401
-from mood_tree.widgets.navbar import NavBar  # noqa: F401
 
 
 class MyScreenManager(MDScreenManager):
     pass
 
 class MoodTreeApp(MDApp):
-    # KV_DIRS = [config.KV_PATH]
-    # DEBUG = True
-    # def __init__(self, *args):
-    #     super(MoodTreeApp, self).__init__(*args)
-
-    # def build_app(self, first=False):
-    #     # self.manager_screens = MyScreenManager()
-    #     # return self.manager_screens
-    #     main_kv_path = os.path.join(config.KV_PATH, "main.kv")
-    #     return Builder.load_file(main_kv_path)
+    # KV_FILES = [
+    #     os.path.join(config.KV_PATH, "main.kv"),
+    #     os.path.join(config.KV_PATH, "home.kv"),
+    #     os.path.join(config.KV_PATH, "intro.kv"),
+    #     os.path.join(config.KV_PATH, "navbar.kv"),
+    # ]
     KV_FILES = [
-        os.path.join(config.KV_PATH, "main.kv"),
-        os.path.join(config.KV_PATH, "home.kv"),
-        os.path.join(config.KV_PATH, "intro.kv"),
-        os.path.join(config.KV_PATH, "navbar.kv"),
+        os.path.join(root, file)
+        for root, _, files in os.walk(config.KV_PATH)
+        for file in files if file.endswith(".kv")
     ]
 
     # Watch for changes in these directories
@@ -46,10 +40,13 @@ class MoodTreeApp(MDApp):
 
     DEBUG = True  # Enable hot reload
 
-    def build_app(self):
-        # ❗ Do NOT load kv manually — hotreload does it for you!
-        # Just return the root widget defined in main.kv
-        return Builder.load_file(os.path.join(config.KV_PATH, "main.kv"))
+    def build_app(self, first=False):
+        main_kv_file = os.path.join(config.KV_PATH, "main.kv")
+        if main_kv_file in Builder.files:
+            Builder.unload_file(main_kv_file)
+        print(f"Builder.files={Builder.files}")
+        print(f"self.KV_FILES={self.KV_FILES}")
+        return Builder.load_file(main_kv_file)
     
     def on_switch_tabs(
         self,
@@ -58,9 +55,21 @@ class MoodTreeApp(MDApp):
         item_icon: str,
         item_text: str,
     ):
-        print("hello32")
-        self.root.ids.screen_manager.current = item.navigate_to
+        print(f"item.navigate_to={item.navigate_to}")
+        self.root_element.ids.screen_manager.current = item.navigate_to
 
     def on_start(self):
+        print("=== DEBUG ROOT ===")
+        print("root repr:", self.root)
+        print("root type:", type(self.root))
+        print("root ids keys:", list(getattr(self.root, "ids", {}).keys()))
+        print("root children count:", len(self.root.children))
+        for i, c in enumerate(self.root.children):
+            print(f" child[{i}] repr: {c!r}")
+            print(f" child[{i}] type: {type(c)}")
+            print(f" child[{i}] ids keys: {list(getattr(c, 'ids', {}).keys())}")
+        print(self.root.children[0].ids)
+        print("==================")
+        self.root_element = self.root.children[0]
         self.fps_monitor_start()
         inspector.create_inspector(Window, self)  # This is a tool for inspecting elements
