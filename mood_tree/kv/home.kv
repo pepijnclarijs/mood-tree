@@ -1,7 +1,7 @@
 #:kivy 2.3.0
 <HomeScreen>:
     name: 'home'
-    md_bg_color: self.theme_cls.backgroundColor
+    md_bg_color: app.app_config.COLOR_SEAFOAM_GREEN
 
     MDIcon:
         icon: "home"
@@ -40,16 +40,4 @@
     MDNavigationItemLabel:
         text: root.text
 
-<NavBar>:
-    MDNavigationBar:
-        on_switch_tabs: app.on_switch_tabs(*args)
-        BaseMDNavigationItem:
-            icon: "home"
-            text: "Home2"
-            active: True
-            navigate_to: "home_screen"
 
-        BaseMDNavigationItem:
-            icon: "intro"
-            text: "Intro"
-            navigate_to: "intro_screen"

@@ -1,0 +1,20 @@
+#:kivy 2.3.0
+<NavBar>:
+    MDNavigationBar:
+        theme_bg_color: "Custom"
+        md_bg_color: app.app_config.COLOR_WARM_CREAM
+        set_bars_color: False
+        on_switch_tabs: app.on_switch_tabs(*args)
+
+        BaseMDNavigationItem:
+            icon: "home"
+            text: "home"
+            active: True
+            navigate_to: "home_screen"
+            indicator_color: app.app_config.COLOR_SOFT_CORAL
+
+        BaseMDNavigationItem:
+            icon: "intro"
+            text: "Intro"
+            navigate_to: "intro_screen"
+            indicator_color: app.app_config.COLOR_SOFT_CORAL
