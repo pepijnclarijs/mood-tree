@@ -135,4 +135,5 @@ work. You must do this with a developer mindset. By that, I mean that you must a
 you can make mistakes and you should not assume you 100% know the answer to some error or question 
 you encounter. Instead, try to test your knowledge by taking simple steps. For example, when you are
 presented with some keyError, something you could do is check what keys are available in the 
-relevant object instead of assuming you know what is available in there. 
+relevant object instead of assuming you know what is available in there. Lastly, please not that I 
+am using the latest version of Kivy and KivyMD.

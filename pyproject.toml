@@ -9,6 +9,7 @@ dependencies = [
     "cython>=3.1.2",
     "kaki>=0.1.9",
     "kivy>=2.3.1",
+    "kivy-examples>=2.3.1",
     "kivy-ios>=2025.5.17",
     "kivy-reloader>=0.7.2",
     "kivymd @ git+https://github.com/kivymd/KivyMD.git@master",

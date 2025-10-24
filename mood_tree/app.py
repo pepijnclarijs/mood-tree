@@ -14,6 +14,7 @@ from mood_tree.config import AppConfig
 # Import your screen classes BEFORE loading KV
 from mood_tree.screens.home import HomeScreen  # noqa: F401
 from mood_tree.screens.intro import IntroScreen  # noqa: F401
+from mood_tree.widgets.buttons import GeneralScreenNavigateButton  # noqa: F401
 from mood_tree.widgets.navbar import NavBar  # noqa: F401
 from mood_tree.widgets.utility_widgets import DateWidget  # noqa: F401
 

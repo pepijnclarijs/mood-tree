@@ -1,4 +1,5 @@
 #:kivy 2.3.0
+#:include mood_tree/kv/buttons.kv
 <HomeScreen>:
     name: 'home'
     md_bg_color: app.app_config.COLOR_SAGE_GREEN
@@ -21,19 +22,29 @@
         orientation: "vertical"
         spacing: "12dp"
         padding: "24dp"
-        # md_bg_color: app.app_config.COLOR_SOFT_CORAL
+        size_hint_x: 0.5        # Take half of the parent width
+        pos_hint: {"center_x": 0.5, "center_y": 0.9}  # Center horizontally
 
-        MDButton:
-            text: "Short"
-            size_hint_x: 1
+        GeneralScreenNavigateButton:
+            # Positioning
+            pos_hint: {'center_x': 0.5}
+            button_text: "Add Today's Entry"
+            target_screen: "intro_screen"
+            button_color: app.app_config.COLOR_SOFT_CORAL
 
-        MDButton:
-            text: "Medium"
-            size_hint_x: 1
+        GeneralScreenNavigateButton:
+            # Positioning
+            pos_hint: {'center_x': 0.5, "center_y": 0.6}
+            button_text: "View Analysis"
+            target_screen: "intro_screen"
+            button_color: app.app_config.COLOR_SEAFOAM_GREEN
 
-        MDButton:
-            text: "Longer"
-            size_hint_x: 1
+        GeneralScreenNavigateButton:
+            # Positioning
+            pos_hint: {'center_x': 0.5, "center_y": 0.4}
+            button_text: "Add New Field"
+            target_screen: "intro_screen"
+            button_color: app.app_config.COLOR_LAVENDER
 
     # MDButton:
     #     # General style
