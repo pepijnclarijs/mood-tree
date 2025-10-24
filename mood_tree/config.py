@@ -6,7 +6,8 @@ from kivy.utils import get_color_from_hex
 class AppConfig:
     BASE_DIR = os.path.dirname(__file__)
     KV_PATH = os.path.join(BASE_DIR, "kv")
-    IMAGES_PATH = os.path.join(BASE_DIR, "assets/images")
+    ASSETS_PATH = os.path.join(BASE_DIR, "assets")
+    IMAGES_PATH = os.path.join(ASSETS_PATH, "images")
 
     # --- Color Palette ---
     # Main Background (Light Sage/Olive)

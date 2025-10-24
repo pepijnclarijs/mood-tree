@@ -1,37 +1,130 @@
 #:kivy 2.3.0
 <HomeScreen>:
     name: 'home'
-    md_bg_color: app.app_config.COLOR_SEAFOAM_GREEN
+    md_bg_color: app.app_config.COLOR_SAGE_GREEN
 
-    MDIcon:
-        icon: "home"
+    DateWidget:
+        MDLabel:
+            text: self.parent.current_date
+            font_style: 'Inter'
+            text_color: app.app_config.COLOR_FOREST_GREEN
+            halign: 'center'
+            pos_hint: {'center_x':0.5, 'center_y':0.9}
+            role: 'medium'
+
+    MDLabel:
+        text: str()
         halign: 'center'
         pos_hint: {'center_x':0.5, 'center_y':0.9}
 
-    MDButton:
-        style: "outlined"
-        size_hint: None, None
-        width: dp(140)
-        height: dp(44)
-        pos_hint: {'center_x': 0.5, 'center_y': 0.6}
-        on_release: root.manager.current = 'play'
-        MDButtonText:
-            text: "Play"
+    MDBoxLayout:
+        orientation: "vertical"
+        spacing: "12dp"
+        padding: "24dp"
+        # md_bg_color: app.app_config.COLOR_SOFT_CORAL
 
-    MDButton:
-        id: MyButton
-        style: "outlined"
-        size_hint: None, None
-        width: dp(140)
-        height: dp(44)
-        pos_hint: {'center_x': 0.5, 'center_y': 0.4}
-        on_release: root.manager.current = 'edit'
-        MDButtonText:
-            text: "Save"
+        MDButton:
+            text: "Short"
+            size_hint_x: 1
 
-    MDLabel:
-        text: str(root.ids.MyButton.height)
-        halign: "center"
+        MDButton:
+            text: "Medium"
+            size_hint_x: 1
+
+        MDButton:
+            text: "Longer"
+            size_hint_x: 1
+
+    # MDButton:
+    #     # General style
+    #     style: "filled"
+
+    #     # Coloring
+    #     theme_bg_color: "Custom"
+    #     md_bg_color: app.app_config.COLOR_SOFT_CORAL
+
+    #     # Sizing
+    #     # theme_width: "Custom"
+    #     # theme_height: "Custom"
+    #     width: "280dp"
+    #     height: "56dp"
+
+    #     # Positioning
+    #     pos_hint: {'center_x': 0.5, 'center_y': 0.8}
+
+    #     # Interactions
+    #     on_release: root.manager.current = 'intro_screen'
+
+    #     # Text
+    #     MDButtonText:
+    #         text: "Add Today's Entry"
+    #         text_size: None, None
+    #         theme_text_color: "Custom"
+    #         text_color: app.app_config.COLOR_WARM_CREAM
+    #         font_style: "Inter"
+    #         role: "medium"
+    #         pos_hint: {"center_x": .5, "center_y": .5}
+
+    # MDButton:
+    #     # General style
+    #     style: "filled"
+
+    #     # Coloring
+    #     theme_bg_color: "Custom"
+    #     md_bg_color: app.app_config.COLOR_SEAFOAM_GREEN
+
+    #     # Sizing
+    #     theme_width: "Custom"
+    #     theme_height: "Custom"
+    #     width: "280dp"
+    #     height: "56dp"
+
+    #     # Positioning
+    #     pos_hint: {'center_x': 0.5, 'center_y': 0.6}
+
+    #     # Interactions
+    #     on_release: root.manager.current = 'intro_screen'
+
+    #     # Text
+    #     MDButtonText:
+    #         text: "View Analysis"
+    #         text_size: None, None
+    #         theme_text_color: "Custom"
+    #         text_color: app.app_config.COLOR_WARM_CREAM
+    #         font_style: "Inter"
+    #         role: "medium"
+    #         pos_hint: {"center_x": .5, "center_y": .5}
+
+    # MDButton:
+    #     # General style
+    #     style: "filled"
+
+    #     # Coloring
+    #     theme_bg_color: "Custom"
+    #     md_bg_color: app.app_config.COLOR_LAVENDER
+
+    #     # Sizing
+    #     theme_width: "Custom"
+    #     theme_height: "Custom"
+    #     width: "280dp"
+    #     height: "56dp"
+
+    #     # Positioning
+    #     pos_hint: {'center_x': 0.5, 'center_y': 0.4}
+
+    #     # Interactions
+    #     on_release: root.manager.current = 'intro_screen'
+
+    #     # Text
+    #     MDButtonText:
+    #         text: "Add New Field"
+    #         text_size: None, None
+    #         theme_text_color: "Custom"
+    #         text_color: app.app_config.COLOR_WARM_CREAM
+    #         font_style: "Inter"
+    #         role: "medium"
+    #         pos_hint: {"center_x": .5, "center_y": .5}
+    
         
 <BaseMDNavigationItem>:
     MDNavigationItemIcon:

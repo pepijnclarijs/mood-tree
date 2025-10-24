@@ -1,7 +1,9 @@
 import os
 
+from kivy.core.text import LabelBase
 from kivy.core.window import Window
 from kivy.lang import Builder  # noqa: F401
+from kivy.metrics import sp
 from kivy.modules import inspector
 from kivymd.tools.hotreload.app import MDApp
 from kivymd.uix.navigationbar import MDNavigationBar, MDNavigationItem
@@ -13,6 +15,7 @@ from mood_tree.config import AppConfig
 from mood_tree.screens.home import HomeScreen  # noqa: F401
 from mood_tree.screens.intro import IntroScreen  # noqa: F401
 from mood_tree.widgets.navbar import NavBar  # noqa: F401
+from mood_tree.widgets.utility_widgets import DateWidget  # noqa: F401
 
 
 class MyScreenManager(MDScreenManager):
@@ -28,18 +31,44 @@ class MoodTreeApp(MDApp):
         (os.getcwd(), {"recursive": True}),
     ]
     AUTORELOADER_IGNORE_PATTERNS = ["*.pyc", "*__pycache__*"]
-    DEBUG = False
+    DEBUG = True
     
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.app_config = AppConfig()
 
     def build_app(self, first=False):
+        self.register_custom_font()
+
         main_kv_file = os.path.join(AppConfig.KV_PATH, "main.kv")
         if main_kv_file in Builder.files:
             Builder.unload_file(main_kv_file)
         
         return Builder.load_file(main_kv_file)
+
+    def register_custom_font(self):
+        LabelBase.register(
+            name="Inter",
+            fn_regular=os.path.join(AppConfig.ASSETS_PATH, "fonts/inter_font.ttf")
+        )
+
+        self.theme_cls.font_styles["Inter"] = {
+            "large": {
+                "line-height": 1.64,
+                "font-name": "Inter",
+                "font-size": sp(67),
+            },
+            "medium": {
+                "line-height": 1.4,
+                "font-name": "Inter",
+                "font-size": sp(24),
+            },
+            "small": {
+                "line-height": 1.2,
+                "font-name": "Inter",
+                "font-size": sp(10),
+            },
+        }
 
     def apply_state(self, state):
         """Override this stub method to run custom code upon hot reload."""
@@ -59,7 +88,6 @@ class MoodTreeApp(MDApp):
         item_text: str,
     ):
         self.root_element.ids.screen_manager.current = item.navigate_to
-        print(f"self.theme_cls.backgroundColor: {self.theme_cls.backgroundColor}")
 
     def on_start(self):
         self.root_element = self.root.children[0]
