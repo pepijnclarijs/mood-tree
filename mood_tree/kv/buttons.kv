@@ -8,18 +8,44 @@
     md_bg_color: self.button_color
 
     # Sizing
-    width: "280dp"
+    theme_width: "Custom"
+    size_hint_x: .9
     height: "56dp"
 
     # Interactions
     on_release: app.root_element.ids.screen_manager.current = self.target_screen
 
-    # Text
     MDButtonText:
+        id: button_text
         text: root.button_text
-        text_size: None, None
+
+        # Font & Color
         theme_text_color: "Custom"
         text_color: app.app_config.COLOR_WARM_CREAM
         font_style: "Inter"
         role: "medium"
+
+        # Bounding box alignment
         pos_hint: {"center_x": .5, "center_y": .5}
+
+        # Text alignment inside bounding box
+        halign: "center"
+        valign: "middle"
+        padding_x: 10
+
+        # dynamic text_size
+        shorten: True
+        shorten_from: 'right'
+        # TODO: This shit is not working.
+        text_size: self.parent.width, None
+        size: self.texture_size
+
+        # Debugging:
+        canvas.before:
+            Color:
+                rgba: 1,0,0,0.3  # red with alpha
+            Rectangle:
+                pos: self.pos
+                size: 
+                    (self.width if self.width is not None else 0,
+                    self.height if self.height is not None else 0)

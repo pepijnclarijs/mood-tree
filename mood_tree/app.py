@@ -12,6 +12,7 @@ from kivymd.uix.screenmanager import MDScreenManager
 from mood_tree.config import AppConfig
 
 # Import your screen classes BEFORE loading KV
+from mood_tree.screens.add_entry import AddEntry  # noqa: F401
 from mood_tree.screens.home import HomeScreen  # noqa: F401
 from mood_tree.screens.intro import IntroScreen  # noqa: F401
 from mood_tree.widgets.buttons import GeneralScreenNavigateButton  # noqa: F401
@@ -88,6 +89,7 @@ class MoodTreeApp(MDApp):
         item_icon: str,
         item_text: str,
     ):
+        """Method for handling navbar tab switches."""
         self.root_element.ids.screen_manager.current = item.navigate_to
 
     def on_start(self):

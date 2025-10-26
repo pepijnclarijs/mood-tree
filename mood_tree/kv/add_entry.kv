@@ -1,0 +1,96 @@
+#:kivy 2.3.0
+
+<ExpansionPanelItem>:
+    MDExpansionPanelHeader:
+        MDListItem:
+            radius: [16, 16, 16, 16]
+            line_color: app.app_config.COLOR_WARM_CREAM
+            line_width: 2
+            theme_bg_color: "Custom"
+            md_bg_color: app.app_config.COLOR_SEAFOAM_GREEN
+            ripple_effect: False
+
+            MDListItemSupportingText:
+                # TODO: Text positioning not correct. Not centered on y-axis.
+                # size_hint_y: None
+                # pos_hint: {"center_y": 0.1}
+                halign: "left"
+                text_size: self.size
+                valign: "middle"
+                font_style: "Inter"
+                role: "medium"
+                text: "Supporting text"
+                theme_text_color: "Custom"
+                text_color: app.app_config.COLOR_WARM_CREAM
+
+            TrailingPressedIconButton:
+                id: chevron
+                icon: "chevron-right"
+                on_release: root.tap_expansion_chevron(root, chevron)
+
+    MDExpansionPanelContent:
+        orientation: "vertical"
+        padding: "12dp", 0, "12dp", "12dp"
+        md_bg_color: self.theme_cls.surfaceContainerLowestColor
+
+        MDLabel:
+            text: "Channel information"
+            adaptive_height: True
+            padding_x: "16dp"
+            padding_y: "12dp"
+
+        MDListItem:
+            theme_bg_color: "Custom"
+            md_bg_color: self.theme_cls.surfaceContainerLowestColor
+
+            MDListItemLeadingIcon:
+                icon: "email"
+
+            MDListItemHeadlineText:
+                text: "Email"
+
+            MDListItemSupportingText:
+                text: "kivydevelopment@gmail.com"
+
+        MDListItem:
+            theme_bg_color: "Custom"
+            md_bg_color: self.theme_cls.surfaceContainerLowestColor
+
+            MDListItemLeadingIcon:
+                icon: "instagram"
+
+            MDListItemHeadlineText:
+                text: "Instagram"
+
+            MDListItemSupportingText:
+                text: "Account"
+
+            MDListItemTertiaryText:
+                text: "www.instagram.com/KivyMD"
+
+<AddEntry>:
+    name: 'add_entry'
+    md_bg_color: app.app_config.COLOR_SAGE_GREEN
+
+    DateWidget:
+        MDLabel:
+            text: self.parent.current_date
+            font_style: 'Inter'
+            text_color: app.app_config.COLOR_FOREST_GREEN
+            halign: 'center'
+            pos_hint: {'center_x':0.5, 'center_y':0.9}
+            role: 'medium'
+
+    MDFloatLayout:
+        size: self.size
+
+        ScrollView:
+            size_hint: 1, 1
+            pos_hint: {"center_x": 0.5, "center_y": 0.3}
+            do_scroll_x: False
+
+            MDList:
+                padding: [dp(20), dp(15), dp(20), dp(15)]
+                spacing: 15
+                size_hint: 1, 1
+                id: container
