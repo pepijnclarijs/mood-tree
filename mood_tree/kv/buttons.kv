@@ -1,4 +1,6 @@
 #:kivy 2.3.0
+#:import Clock kivy.clock.Clock
+
 <GeneralScreenNavigateButton>:
     # General style
     style: "filled"
@@ -34,18 +36,17 @@
         padding_x: 10
 
         # dynamic text_size
+        adaptive_height: True
+        markup: True
         shorten: True
         shorten_from: 'right'
-        # TODO: This shit is not working.
-        text_size: self.parent.width, None
-        size: self.texture_size
+        text_size: (self.parent.width * 0.9, None)
+        
+        # TODO: Figure out how Material Design works. What is its philosophy around widget 
+        # responsiveness and how much of that comes out of the box in kivyMD?
 
-        # Debugging:
-        canvas.before:
-            Color:
-                rgba: 1,0,0,0.3  # red with alpha
-            Rectangle:
-                pos: self.pos
-                size: 
-                    (self.width if self.width is not None else 0,
-                    self.height if self.height is not None else 0)
+        # Example drawing a rect on a widget
+        # on_kv_post:
+        #     print("Drawing and binding Rect!")
+        #     app.draw_rect_on_widget(self, True)
+            

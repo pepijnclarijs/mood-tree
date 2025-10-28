@@ -2,6 +2,7 @@ import os
 
 from kivy.core.text import LabelBase
 from kivy.core.window import Window
+from kivy.graphics import Color, Rectangle
 from kivy.lang import Builder  # noqa: F401
 from kivy.metrics import sp
 from kivy.modules import inspector
@@ -33,7 +34,7 @@ class MoodTreeApp(MDApp):
         (os.getcwd(), {"recursive": True}),
     ]
     AUTORELOADER_IGNORE_PATTERNS = ["*.pyc", "*__pycache__*"]
-    DEBUG = True
+    DEBUG = False
     
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -96,3 +97,28 @@ class MoodTreeApp(MDApp):
         self.root_element = self.root.children[0]
         inspector.create_inspector(Window, self)  # This is a tool for inspecting elements
 
+    # Below functions are used for drawing rectangles, which can be used for debugging.
+    def update_rect(self, instance, value):
+        """Helper function for binding rectangles to widget pos and size"""
+        if hasattr(instance, "rect"):
+            instance.rect.pos = instance.pos
+            instance.rect.size = instance.size
+
+    def update_parent_rect(self, instance, value):
+        if hasattr(instance, "parent_rect") and instance.parent:
+            instance.parent_rect.pos = instance.parent.pos
+            instance.parent_rect.size = instance.parent.size
+
+    def draw_rect_on_widget(self, widget, draw_parent=False):
+        with widget.canvas.after:
+            Color(1, 0, 0, 0.2)
+            widget.rect = Rectangle(pos=widget.pos, size=widget.size)
+
+            if draw_parent and widget.parent:
+                widget.parent_rect = Rectangle(
+                    pos=widget.parent.pos,
+                    size=widget.parent.size
+                )
+                widget.parent.bind(pos=self.update_parent_rect, size=self.update_parent_rect)
+
+        widget.bind(pos=self.update_rect, size=self.update_rect)
